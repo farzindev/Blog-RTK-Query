@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const postsApi = createApi({
   reducerPath: "posts",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000"
+    baseUrl: "https://2mtyp-4000.sse.codesandbox.io"
   }),
   tagTypes: ["Post"],
   endpoints: (builder) => ({
@@ -38,7 +38,7 @@ export const postsApi = createApi({
       query(id) {
         return {
           url: `posts/${id}/`,
-          method: "DELETE",
+          method: "DELETE"
         };
       },
       invalidatesTags: ["Post"]
