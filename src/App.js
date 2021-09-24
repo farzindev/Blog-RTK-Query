@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import './styles.scss';
 
 // redux
 import { Provider } from "react-redux";
