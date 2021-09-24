@@ -39,7 +39,7 @@ const Add = () => {
             <h2>Add Post</h2>
 
             <label>Title</label>
-            <input onChange={handler} name="title" type="text" />
+            <input onChange={handler} name="title" type="text"  required/>
 
             <label>Content</label>
             <textarea onChange={handler} name="content" rows="10"></textarea>
@@ -48,10 +48,9 @@ const Add = () => {
                 <Link className="btn btn-default" to="/">Cancel</Link>
                 <button className="btn btn-primary" type="submit">{updating ? "Adding..." : "Add"}</button>
             </footer>
-
             {saved && (
-                <div className="alert">
-                    Post has been added. redirecting...
+                <div className="alert alert-primary">
+                    Post added. redirecting...
                 </div>
             )}
         </form>

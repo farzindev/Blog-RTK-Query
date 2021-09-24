@@ -93,16 +93,17 @@ h3 {
   border-radius: 0.125rem;
   text-align: center;
   font-weight: 500;
+  transition: background-color ease 0.25s;
 
   &-block {
     width: 100%;
   }
 
   &-primary {
-    background-color: #333;
+    background-color: #00c281;
     color: #fff;
     &:hover {
-      background-color: #000;
+      background-color: #00a36d;
       color: #fff;
     }
   }
@@ -111,7 +112,17 @@ h3 {
     color: #000;
 
     &:hover {
+      background-color: #f8f8f8;
       color: #000;
+    }
+  }
+  &-danger {
+    background-color: #f34e4e;
+    color: #fff;
+
+    &:hover {
+      background-color: #dd4242;
+      color: #fff;
     }
   }
 }
@@ -122,8 +133,8 @@ h3 {
     display: flex;
     .btn {
       width: 50%;
-      &:first-child {
-        margin-right: 2rem;
+      &:not(:last-child) {
+        margin-right: 1rem;
       }
     }
   }
@@ -159,5 +170,23 @@ textarea {
       color: #0a58ca;
       margin-left: 1rem;
     }
+  }
+}
+
+// alert
+.alert {
+  border-radius: 0.125rem;
+  padding: 1rem;
+  margin: 2rem 0;
+  text-align: center;
+  &-primary {
+    background-color: #d8f0e8;
+    color: #005539;
+    font-weight: 500;
+  }
+  &-info {
+    background-color: #d8e6f0;
+    color: #001e55;
+    font-weight: 500;
   }
 }
