@@ -5,14 +5,21 @@ export const postsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/"
   }),
-  tagTypes: ["Post"],
+  tagTypes: ["Posts"],
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: () => "posts/",
-      providesTags: ["Post"]
+      providesTags: (result) =>
+        // learn about revalidation:
+        // https://redux-toolkit.js.org/rtk-query/usage/mutations#revalidation-example
+        result ?
+          [...result.map(({ id }) => ({ type: 'Posts', id })), { type: 'Posts', id: 'LIST' },]
+          :
+          [{ type: 'Posts', id: 'LIST' }],
     }),
     getPost: builder.query({
-      query: (id) => `posts/${id}/`
+      query: (id) => `posts/${id}/`,
+      providesTags: (result, error, id) => [{ type: 'Posts', id }],
     }),
     addPost: builder.mutation({
       query(body) {
@@ -22,17 +29,18 @@ export const postsApi = createApi({
           body
         };
       },
-      invalidatesTags: ["Post"]
+      invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
     }),
     editPost: builder.mutation({
-      query(body) {
+      query(data) {
+        const {id, ...body} = data
         return {
-          url: `posts/${body.id}/`,
+          url: `posts/${id}/`,
           method: "PUT",
           body
         };
       },
-      invalidatesTags: ["Post"]
+      invalidatesTags: (result, error, { id }) => [{ type: 'Posts', id }],
     }),
     deletePost: builder.mutation({
       query(id) {
@@ -41,7 +49,7 @@ export const postsApi = createApi({
           method: "DELETE"
         };
       },
-      invalidatesTags: ["Post"]
+      invalidatesTags: (result, error, id) => [{ type: 'Posts', id }],
     })
   })
 });
