@@ -7,7 +7,7 @@ const ListItem = ({ item }) => {
             <p>{item.content}</p>
             <footer>
                 {item.published ?
-                    <time>{new Date(item.date).toLocaleDateString()}</time>
+                    <time>{new Date(item.updated).toLocaleDateString()}</time>
                     :
                     <span>Draft</span>
                 }

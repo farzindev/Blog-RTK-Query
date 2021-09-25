@@ -2,7 +2,7 @@
   "name": "blog-posts-with-react-and-rtk-query",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently --kill-others \"vite\" \"json-server --watch db.json --port 4000\" ",
+    "start": "concurrently --kill-others \"vite\" \"node server/server.js\" ",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"

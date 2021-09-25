@@ -5,21 +5,25 @@
       "title": "RTK Query is a powerful data fetching and caching tool",
       "content": "It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself. \n RTK Query is an optional addon included in the Redux Toolkit package, and its functionality is built on top of the other APIs in Redux Toolkit.",
       "published": false,
-      "date": "2021-09-25"
+      "date": "2021-09-25",
+      "created": 1632592495784,
+      "updated": 1632592808897
     },
     {
       "id": 2,
       "title": "The most common use case for RTK Query",
       "content": "This is the most common use case for RTK Query. A query operation can be performed with any data fetching library of your choice, but the general recommendation is that you only use queries for requests that retrieve data. For anything that alters data on the server or will possibly invalidate the cache, you should use a Mutation.",
       "published": true,
-      "date": "2021-09-24"
+      "created": 1632592495784,
+      "updated": 1632592619036
     },
     {
       "id": 3,
       "title": "Mutations are used to send data updates to the server and the local cache",
-      "content": "Mutations can also invalidate cached data and force re-fetches. \n \n Defining Mutation Endpoints \n Mutation endpoints are defined by returning an object inside the endpoints section of createApi, and defining the fields using the builder.mutation() method. \n Mutation endpoints should define either a query callback that constructs the URL (including any URL query params), or a queryFn callback that may do arbitrary async logic and return a result. The query callback may also return an object containing the URL, the HTTP method to use and a request body.",
+      "content": "Mutations can also invalidate cached data and force re-fetches. \n \n Defining Mutation Endpoints \n Mutation endpoints are defined by returning an object inside the endpoints section of createApi, and defining the fields using the builder.mutation() method. \n Mutation endpoints should define either a query callback that constructs the URL (including any URL query params), or a queryFn callback that may do arbitrary async logic and return a result.",
       "published": true,
-      "date": "2021-09-23"
+      "created": 1632592495784,
+      "updated": 1632592619036
     }
   ]
 }
