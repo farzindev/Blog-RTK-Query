@@ -3,32 +3,23 @@
     {
       "id": 1,
       "title": "RTK Query is a powerful data fetching and caching tool",
-      "content": "It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself. \n RTK Query is an optional addon included in the Redux Toolkit package, and its functionality is built on top of the other APIs in Redux Toolkit."
+      "content": "It is designed to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself. \n RTK Query is an optional addon included in the Redux Toolkit package, and its functionality is built on top of the other APIs in Redux Toolkit.",
+      "published": false,
+      "date": "2021-09-25"
     },
     {
       "id": 2,
       "title": "The most common use case for RTK Query",
-      "content": "This is the most common use case for RTK Query. A query operation can be performed with any data fetching library of your choice, but the general recommendation is that you only use queries for requests that retrieve data. For anything that alters data on the server or will possibly invalidate the cache, you should use a Mutation."
+      "content": "This is the most common use case for RTK Query. A query operation can be performed with any data fetching library of your choice, but the general recommendation is that you only use queries for requests that retrieve data. For anything that alters data on the server or will possibly invalidate the cache, you should use a Mutation.",
+      "published": true,
+      "date": "2021-09-24"
     },
     {
       "id": 3,
-      "title": "Mutations are used to send data updates to the server and apply the changes to the local cache",
-      "content": "Mutations can also invalidate cached data and force re-fetches. \n \n Defining Mutation Endpoints \n Mutation endpoints are defined by returning an object inside the endpoints section of createApi, and defining the fields using the builder.mutation() method. \n Mutation endpoints should define either a query callback that constructs the URL (including any URL query params), or a queryFn callback that may do arbitrary async logic and return a result. The query callback may also return an object containing the URL, the HTTP method to use and a request body."
-    },
-    {
-      "id": 4,
-      "title": "A key feature of RTK Query is its management of cached data",
-      "content": "When data is fetched from the server, RTK Query will store the data in the Redux store as a 'cache'. When an additional request is performed for the same data, RTK Query will provide the existing cached data rather than sending an additional request to the server. \n RTK Query provides a number of concepts and tools to manipulate the cache behaviour and adjust it to your needs."
-    },
-    {
-      "id": 5,
-      "title": "RTK Query uses a 'cache tag' system to automate re-fetching",
-      "content": "As seen under Default Cache Behavior, when a subscription is added for a query endpoint, a request will be sent only if the cache data does not already exist. If it exists, the existing data will be served instead.\n RTK Query uses a 'cache tag' system to automate re-fetching for query endpoints that have data affected by mutation endpoints. This enables designing your api such that firing a specific mutation will cause a certain query endpoint to consider its cached data invalid, and re-fetch the data if there is an active subscription."
-    },
-    {
-      "id": 6,
-      "title": "Query hooks automatically begin fetching data as soon as the component is mounted",
-      "content": "But, there are use cases where you may want to delay fetching data until some condition becomes true. RTK Query supports conditional fetching to enable that behavior.\n If you want to prevent a query from automatically running, you can use the skip parameter in a hook."
+      "title": "Mutations are used to send data updates to the server and the local cache",
+      "content": "Mutations can also invalidate cached data and force re-fetches. \n \n Defining Mutation Endpoints \n Mutation endpoints are defined by returning an object inside the endpoints section of createApi, and defining the fields using the builder.mutation() method. \n Mutation endpoints should define either a query callback that constructs the URL (including any URL query params), or a queryFn callback that may do arbitrary async logic and return a result. The query callback may also return an object containing the URL, the HTTP method to use and a request body.",
+      "published": true,
+      "date": "2021-09-23"
     }
   ]
 }

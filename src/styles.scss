@@ -1,4 +1,5 @@
 // Not much css here, just wanted to focus on the RTK Query.
+// Also, I tried to keep the HTML clean with not much className.
 
 *,
 *::before,
@@ -83,7 +84,7 @@ h3 {
 
 //
 .container {
-  width: 30rem;
+  width: 34rem;
   max-width: 100%;
   margin: 6rem auto;
   padding: 0 2rem;
@@ -134,6 +135,7 @@ h3 {
 .form {
   &-footer {
     display: flex;
+    margin-top: 2rem;
     .btn {
       width: 50%;
       &:not(:last-child) {
@@ -143,8 +145,7 @@ h3 {
   }
 }
 
-input,
-textarea {
+.form-control {
   display: block;
   width: 100%;
   background-color: #fff;
@@ -153,25 +154,71 @@ textarea {
   padding: 0.75rem;
 }
 
+.form-checkbox {
+  display: none;
+
+  & + label {
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      width: 1.125rem;
+      height: 1.125rem;
+      display: inline-block;
+      margin-right: 0.5rem;
+      background-color: none;
+      transform: translateY(-0.0625rem);
+      border: 2px solid #333;
+      border-radius: 0.25rem;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      color: #000;
+      &:before {
+        border-color: #000;
+      }
+    }
+  }
+
+  &:checked + label {
+    &:before {
+      background-position: center;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23000' class='bi bi-check' viewBox='0 0 16 16'%3E%3Cpath d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/%3E%3C/svg%3E");
+    }
+  }
+}
+
 // post
 .post {
   margin-top: 4rem;
   h2 {
-    font-size: 1.25rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 700;
     line-height: 1.25;
     margin-bottom: 1rem;
     display: block;
-    color: #111;
+    a {
+      color: #333;
+      &:hover {
+        color: #000;
+      }
+    }
   }
 
   footer {
     display: flex;
-
-    button,
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    color:#444;
+    span,
+    time,
     a {
-      color: #0a58ca;
-      margin-left: 1rem;
+      display: inline-block;
+      margin-right: 1rem;
+      border-radius: 0.25rem;
     }
   }
 }
@@ -182,15 +229,19 @@ textarea {
   padding: 1rem;
   margin: 2rem 0;
   text-align: center;
+  font-weight: 500;
+
   &-primary {
     background-color: #d8f0e8;
     color: #005539;
-    font-weight: 500;
   }
   &-info {
     background-color: #d8e6f0;
     color: #001e55;
-    font-weight: 500;
+  }
+  &-danger {
+    background-color: #f0d8d8;
+    color: #550000;
   }
 }
 
@@ -203,8 +254,9 @@ textarea {
   display: block;
   margin: 6rem auto;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='currentColor' viewBox='0 0 16 16'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z' /%3E%3C/svg%3E");
+  opacity: 0.75;
 
   &:hover {
-    opacity: 0.6;
+    opacity: 1;
   }
 }

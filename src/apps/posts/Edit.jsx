@@ -1,19 +1,18 @@
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import { useGetPostQuery, useEditPostMutation, useDeletePostMutation } from "./_api";
-import { useState, useEffect } from "react";
 
 const Edit = ({ match }) => {
     const history = useHistory();
     const postId = match.params.id;
-    const [deletePost] = useDeletePostMutation();
-    const [
-        editpost,
-        { isLoading: updating, isSuccess: saved }
-    ] = useEditPostMutation();
+    
+    const [post, setpost] = useState({ id: postId, title: "", content: "", published: true, date: "" });
     const { data: postData, isSuccess: postDataReady } = useGetPostQuery(postId);
-    const [post, setpost] = useState({ title: "", content: "" });
+
+    const [deletePost, { isLoading: isDeleting, isSuccess: isDeleted }] = useDeletePostMutation();
+    const [editpost, { isLoading: isUpdating, isSuccess: isSaved }] = useEditPostMutation();
 
     useEffect(() => {
         if (postDataReady) {
@@ -21,18 +20,21 @@ const Edit = ({ match }) => {
         }
     }, [postData, postDataReady]);
 
-    const update = (e) => {
+    const updatePost = (e) => {
         e.preventDefault();
-        editpost(post)
-            .unwrap()
-            .then(() => {
-                goBack(1500);
-            });
+        editpost(post);
+        goBack(700);
     };
+    
+    const removePost = () => {
+        deletePost(postId);
+        goBack(700);
+    }
 
-    const handler = (e) => {
-        const { name, value } = e.target;
-        setpost({ ...post, [name]: value });
+    const inputHandler = (e) => {
+        const { name, value, checked } = e.target;
+        let theValue = name === "published" ? checked : value
+        setpost({ ...post, [name]: theValue });
     };
 
     const goBack = (time) => {
@@ -41,35 +43,27 @@ const Edit = ({ match }) => {
         }, time);
     };
 
-
-    const remove = () => {
-        deletePost(postId)
-        history.push("/posts/");
-    }
-
-
-
     return (
-        <form onSubmit={update} className="form">
+        <form onSubmit={updatePost} className="form">
             <h2>Edit Post</h2>
 
-            <label>Title</label>
-            <input onChange={handler} value={post.title} name="title" type="text" required />
+            <label htmlFor="title">Title</label>
+            <input onChange={inputHandler} value={post.title} name="title" id="title" type="text" className="form-control" required />
 
-            <label>Content</label>
-            <textarea onChange={handler} value={post.content} name="content" rows="10"></textarea>
+            <label htmlFor="content">Content</label>
+            <textarea onChange={inputHandler} value={post.content} name="content" id="content" className="form-control" rows="10"></textarea>
+
+            <input onChange={inputHandler} name="published" id="published" type="checkbox" className="form-checkbox" checked={post.published} />
+            <label htmlFor="published">Publishd</label>
 
             <footer className="form-footer">
                 <Link className="btn btn-default" to="/">Cancel</Link>
-                <button className="btn btn-danger" type="button" onClick={remove}>Delete</button>
-                <button className="btn btn-primary" type="submit">{updating ? "Saving..." : "Save"}</button>
+                <button className="btn btn-danger" type="button" onClick={removePost}>{isDeleting ? "Deleting..." : "Delete"}</button>
+                <button className="btn btn-primary" type="submit">{isUpdating ? "Saving..." : "Save"}</button>
             </footer>
 
-            {saved && (
-                <div className="alert alert-primary">
-                    Post saved. redirecting...
-                </div>
-            )}
+            {isSaved && (<div className="alert alert-primary">Post saved. redirecting...</div>)}
+            {isDeleted && (<div className="alert alert-danger">Post Deleted. redirecting...</div>)}
         </form>
     )
 }
